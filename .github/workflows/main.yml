@@ -1,23 +1,26 @@
-name: php-cs-fixer
+name: git-auto-commit
 
 on:
-  pull_request:
   push:
     branches:
-      - main
+      - master
+  pull_request:
 
 jobs:
-  php-cs-fixer:
+  git-auto-commit:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-      with:
-        ref: ${{ github.head_ref }}
+    - uses: actions/checkout@v3
 
-    - name: Run php-cs-fixer
-      uses: docker://oskarstark/php-cs-fixer-ga
+    - name: Use git-auto-commit-action
+      id: "auto-commit-action"
+      uses: ./
 
-    - uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Apply php-cs-fixer changes
+    - name: "no changes detected"
+      if: steps.auto-commit-action.outputs.changes_detected == 'false'
+      run: "echo \"No changes detected\""
+
+    - name: "changes detected"
+      if: steps.auto-commit-action.outputs.changes_detected == 'true'
+      run: "echo \"Changes detected\""
