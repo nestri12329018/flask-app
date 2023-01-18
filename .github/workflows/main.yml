@@ -1,26 +1,52 @@
-name: git-auto-commit
+name: Auto commit
 
 on:
+
   push:
     branches:
       - master
-  pull_request:
+      
+  schedule:
+  - cron: "0 * * * *" 
 
 jobs:
-  git-auto-commit:
+  auto_commit:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v2      
+        with:
+         persist-credentials: false
+         fetch-depth: 0
 
-    - name: Use git-auto-commit-action
-      id: "auto-commit-action"
-      uses: ./
-
-    - name: "no changes detected"
-      if: steps.auto-commit-action.outputs.changes_detected == 'false'
-      run: "echo \"No changes detected\""
-
-    - name: "changes detected"
-      if: steps.auto-commit-action.outputs.changes_detected == 'true'
-      run: "echo \"Changes detected\""
+      - name: Modify last update
+        run: |
+          d=`date '+%Y-%m-%dT%H:%M:%SZ'`
+          echo $d > LAST_UPDATED
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "mazipanneh@gmail.com"
+          git config --local user.name "mazipan"
+          git add -A
+          
+          arr[0]="chore(bot): 😂 auto commit"
+          arr[1]="chore(bot): 😱 auto commit"
+          arr[2]="chore(bot): 👿 auto commit"
+          arr[3]="chore(bot): 💩 auto commit"
+          arr[4]="chore(bot): 🙏 auto commit"
+          arr[5]="chore(bot): 🙈 auto commit"
+          arr[6]="chore(bot): 🐐 auto commit"
+          arr[7]="chore(bot): 🤖 auto commit"
+          arr[8]="chore(bot): 🟩 auto commit"
+          arr[9]="chore(bot): 👻 auto commit"
+          
+          rand=$[$RANDOM % ${#arr[@]}]
+          
+          git commit -m "${arr[$rand]}"
+          
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.5.0
+        with:
+          force: true
+          directory: "."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
