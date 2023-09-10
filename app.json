@@ -11,5 +11,5 @@
   },
   "website": "https://github.com/Chasing66/peer2profit",
   "repository": "https://github.com/Chasing66/peer2profit-heroku",
-  "stack": "container"
+  "stack": "heroku-22"
 }
